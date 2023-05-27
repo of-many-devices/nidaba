@@ -1,3 +1,4 @@
+//jshint sub:true
 var money =
 {
 	init: function()
@@ -66,6 +67,12 @@ var money =
 			function(event)
 			{
 				this.add({ 	"type" : "burger", "burger_mix_type" : "gluten_free", "burger_type" : "single", "extras" : [] });
+			}.bind(this)
+		);
+		document.getElementById("wedges").addEventListener('touchstart',
+			function(event)
+			{
+				this.add({ 	"type" : "cold_food", "cold_food_type" : "wedges", "extras" : [] });
 			}.bind(this)
 		);
 		document.getElementById("cake").addEventListener('touchstart',
@@ -269,18 +276,6 @@ var money =
 				this.add_extra("Sugar");
 			}.bind(this)
 		);
-		document.getElementById("double_sugar").addEventListener('touchstart',
-			function(event)
-			{
-				this.add_extra("Sugar x2");
-			}.bind(this)
-		);
-		document.getElementById("triple_sugar").addEventListener('touchstart',
-			function(event)
-			{
-				this.add_extra("Sugar x3");
-			}.bind(this)
-		);
 		document.getElementById("ask_me_1").addEventListener('touchstart',
 			function(event)
 			{
@@ -408,14 +403,18 @@ var money =
 					break;
 				}
 				case "cheezly":
-				case "double":
 				{
 					price = this.config["price_burger_base"] + this.config["price_burger_extra"];
 					break;
 				}
-				case "double_cheezly":
+				case "double":
 				{
 					price = this.config["price_burger_base"] + (2 * this.config["price_burger_extra"]);
+					break;
+				}
+				case "double_cheezly":
+				{
+					price = this.config["price_burger_base"] + (3 * this.config["price_burger_extra"]);
 					break;
 				}
 				default:
@@ -434,11 +433,11 @@ var money =
 
 			if(item["extras"].indexOf("Shrooms") > -1)
 			{
-				price += this.config["price_burger_extra"]
+				price += this.config["price_burger_extra"];
 			}
 			if(item["extras"].indexOf("Rasher") > -1)
 			{
-				price += this.config["price_burger_extra"]
+				price += this.config["price_burger_extra"];
 			}
 
 			burger_str = burger_str.charAt(0).toUpperCase() + burger_str.slice(1);
@@ -462,6 +461,7 @@ var money =
 		{
 			switch(item["cold_food_type"])
 			{
+				case "wedges":
 				case "pasty":
 				{
 					price = this.config["price_cold_food_pasty"];

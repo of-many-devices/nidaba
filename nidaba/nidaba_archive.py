@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import time
 import datetime
 import os.path
 import shutil
@@ -74,7 +75,13 @@ class nidaba_archive(object):
 
 		subprocess.call(["sudo", "date", "+%Y-%m-%d", "-s", "{0}".format(now.date())])
 		subprocess.call(["sudo", "date", "+%T", "-s", "{0}:{1}:{2}".format(now.hour, now.minute, now.second)])
-	
+
+	def get_time(self, argv):
+		return 	{ \
+					"time_epoch": time.time(),
+					"time_string": str(datetime.datetime.now())
+				}
+
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
 	def item_profit(self, item, config):
@@ -83,7 +90,7 @@ class nidaba_archive(object):
 
 		if item["type"] == "burger":
 			extra_count = { 	"single" : 0, \
-								"double" : 1, 
+								"double" : 2, 
 								"cheezly": 1,
 								"double_cheezly" : 2 }.get(item["burger_type"], None)
 
@@ -100,10 +107,12 @@ class nidaba_archive(object):
 			cost = config["cost_hot_drink"]
 
 		if item["type"] == "cold_food":
-			price = {	"pasty" : config["price_cold_food_pasty"], \
+			price = {	"wedges" : config["price_cold_food_pasty"], \
+						"pasty" : config["price_cold_food_pasty"], \
 						"indian" : config["price_cold_food_indian"],
 						"cake" : config["price_cold_food_cake"] }.get(item["cold_food_type"], None)
-			cost = {	"pasty" : config["cost_cold_food_pasty"], \
+			cost = {	"wedges" : config["cost_cold_food_pasty"], \
+						"pasty" : config["cost_cold_food_pasty"], \
 						"indian" : config["cost_cold_food_indian"],
 						"cake" : config["cost_cold_food_cake"] }.get(item["cold_food_type"], None)
 
@@ -115,7 +124,7 @@ class nidaba_archive(object):
 						"carton" : config["cost_cold_drink_carton"],
 						"bottle" : config["cost_cold_drink_bottle"] }.get(item["cold_drink_type"], None)
 
-		return(price-cost)
+		return(price, cost)
 
 	def get_report(self, argv):
 		config = self.get_config(argv)
@@ -127,12 +136,19 @@ class nidaba_archive(object):
 								"day" : self.date_2_day(date_str),
 								"max_profit" : 0.0,
 								"max_hour_profit" : 0.0,
+								"max_turnover" : 0.0,
+								"max_hour_turnover" : 0.0,
 								"max_count" : { 	"burger" : 0, \
 													"hot_drink" : 0,
 													"cold_food" : 0,
 													"cold_drink" : 0 },
 								"total_profit" : 0.0,
 								"total_profit_type" : { 	"burger" : 0, \
+															"hot_drink" : 0,
+															"cold_food" : 0,
+															"cold_drink" : 0 },
+								"total_turnover" : 0.0,
+								"total_turnover_type" : { 	"burger" : 0, \
 															"hot_drink" : 0,
 															"cold_food" : 0,
 															"cold_drink" : 0 }	}
@@ -144,19 +160,24 @@ class nidaba_archive(object):
 						item = pickle.load(read_fp)
 
 						if not item["hour"] in report_data:
-							report_data[item["hour"]] = { 	"burger" : { "count" : 0, "profit" : 0.0 }, \
-															"hot_drink" : { "count" : 0, "profit" : 0.0 },
-															"cold_food" : { "count" : 0, "profit" : 0.0 },
-															"cold_drink" : { "count" : 0, "profit" : 0.0 },
-															"profit" : 0.0 }
+							report_data[item["hour"]] = { 	"burger" : { "count" : 0, "profit" : 0.0, "turnover" : 0.0 }, \
+															"hot_drink" : { "count" : 0, "profit" : 0.0, "turnover" : 0.0 },
+															"cold_food" : { "count" : 0, "profit" : 0.0, "turnover" : 0.0 },
+															"cold_drink" : { "count" : 0, "profit" : 0.0, "turnover" : 0.0 },
+															"profit" : 0.0, "turnover" : 0.0 }
 
-						profit = self.item_profit(item, config)
+						price, cost = self.item_profit(item, config)
+						profit = price-cost
 						report_data[item["hour"]][item["type"]]["count"] += 1
 						report_data[item["hour"]][item["type"]]["profit"] += profit
 						report_data[item["hour"]]["profit"] += profit
+						report_data[item["hour"]][item["type"]]["turnover"] += price
+						report_data[item["hour"]]["turnover"] += price
 
 						report_meta_data["total_profit"] += profit
 						report_meta_data["total_profit_type"][item["type"]] += profit
+						report_meta_data["total_turnover"] += price
+						report_meta_data["total_turnover_type"][item["type"]] += price
 
 						if report_data[item["hour"]][item["type"]]["count"] > report_meta_data["max_count"][item["type"]]:
 							report_meta_data["max_count"][item["type"]] = report_data[item["hour"]][item["type"]]["count"]
@@ -166,6 +187,12 @@ class nidaba_archive(object):
 
 						if report_data[item["hour"]]["profit"] > report_meta_data["max_hour_profit"]:
 							report_meta_data["max_hour_profit"] = report_data[item["hour"]]["profit"]
+
+						if report_data[item["hour"]][item["type"]]["turnover"] > report_meta_data["max_turnover"]:
+							report_meta_data["max_turnover"] = report_data[item["hour"]][item["type"]]["turnover"]
+
+						if report_data[item["hour"]]["turnover"] > report_meta_data["max_hour_turnover"]:
+							report_meta_data["max_hour_turnover"] = report_data[item["hour"]]["turnover"]
 
 				except EOFError:
 					pass

@@ -8,13 +8,28 @@
 	text-align:			center;
 }
 
+#header
+{
+}
+
 #title
 {
-	top:				2%;
+	position:			absolute;
+	top:				5%;
+	width:				30%;
+	height:				100%;	
 	background-image: 	url("../img/nidaba.png");
-	background-size:	auto 100%;
+	background-size:	100% 100%;
 	background-repeat:	no-repeat;
 	background-position:center;
+}	
+#server_status
+{
+	position:			absolute;
+	top:				5%;
+	width:				70%;
+	height:				100%;	
+	left:				30%;
 }	
 
 #money

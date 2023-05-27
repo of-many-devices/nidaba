@@ -57,13 +57,17 @@
 
 .menu_item
 {
-	background-size:	100% 100%;
+	background-size:	101% 101%;
 	background-repeat:	no-repeat;
 	background-position:center;
 	width:				15%;
 	height:				12%;
 	float:				left;
 	margin:				1px;
+	font-family:		Sans-Serif;
+	font-weight:		bolder;
+	color:				#90e090;
+	text-align:			center;
 }
 
 .menu_option
@@ -145,6 +149,11 @@
 {
 	background-image: 	url("../img/single.png");
 	background-color:	#d2bd85;
+}
+
+#wedges
+{
+	background-image: 	url("../img/wedges.png");
 }
 
 #cake

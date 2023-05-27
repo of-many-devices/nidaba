@@ -33,13 +33,16 @@ class nidaba(object):
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
 	@cherrypy.expose
-	def reports(self, date="", scale="total_profit", print_view="no"):
+	def reports(self, date="", scale="total", print_view="no", mode="turnover"):
 		doc = ""
 		report_data, report_meta_data = self.io_parse(["get_report", date])
 		config = self.io_parse(["get_config", date])
 
-		if not scale in ["total_profit", "type_profit"]:
-			scale = "total_profit"
+		if not scale in ["total", "type"]:
+			scale = "total"
+
+		if not mode in ["profit", "turnover"]:
+			mode = "turnover"
 
 		with open("./private/reports_top.html", "rb") as read_fp:
 			doc += read_fp.read().decode()
@@ -61,7 +64,7 @@ class nidaba(object):
 
 			doc += \
 """	<div id="header">"""
-			doc += '<div id="event_title"><br><span id="title_1">{0} : {1}</span><span id="title_2"> [{2}]</span><span id="title_3"> : £{3:.2f}</span></div>'.format(config["event_name"], report_meta_data["day"], report_meta_data["date"], report_meta_data["total_profit"])
+			doc += '<div id="event_title"><br><span id="title_1">{0} : {1}</span><span id="title_2"> [{2}]</span><span id="title_3"> : £{3:.2f}</span></div>'.format(config["event_name"], report_meta_data["day"], report_meta_data["date"], report_meta_data["total_"+mode])
 
 			doc += \
 """	</div>
@@ -85,26 +88,22 @@ class nidaba(object):
 """			</div>
 		</div>"""
 
-			### total profit
+			### total profit/turnover
 
-			doc += \
-"""		<div class="chart" id="chart_profit">
-			<div class="chart_header">
-				<h2>Total Profit</h2>
-			</div>
-			<div class="chart_data" id="chart_data_profit">"""
+			doc += '<div class="chart" id="chart_{0}"><div class="chart_header"><h2>Total {0}</h2></div><div class="chart_data" id="chart_data_{0}">'.format(mode)
 
 			for hour in sorted(report_data.keys()):
 				try:
-					width = int((report_data[hour]["profit"]*100)/report_meta_data["total_profit"])
+					width = int((report_data[hour][mode]*100)/report_meta_data["total_"+mode])
 				except ZeroDivisionError:
 					width = 0
 
-				doc += '<div class="entry"><div style="width:{0}%" class="bar" id="cdp_{1}"></div><div class="bar_value"><div class="bar_value_profit" id="cdp_{1}_profit">£{3:.2f}</div></div></div>'.format( \
+				doc += '<div class="entry"><div style="width:{0}%" class="bar" id="cdp_{1}"></div><div class="bar_value"><div class="bar_value_{4}" id="cdp_{1}_{4}">£{3:.2f}</div></div></div>'.format( \
 					width,
 					hour,
 					hour+1,
-					report_data[hour]["profit"])
+					report_data[hour][mode],
+					mode)
 
 			doc += \
 """			</div>
@@ -121,19 +120,20 @@ class nidaba(object):
 
 			for hour in sorted(report_data.keys()):
 				try:
-					if scale == "total_profit":
-						width = int((report_data[hour]["burger"]["profit"]*100)/report_meta_data["total_profit"])
+					if scale == "total":
+						width = int((report_data[hour]["burger"][mode]*100)/report_meta_data["total_"+mode])
 					else:
-						width = int((report_data[hour]["burger"]["profit"]*100)/report_meta_data["total_profit_type"]["burger"])
+						width = int((report_data[hour]["burger"][mode]*100)/report_meta_data["total_"+mode+"_type"]["burger"])
 				except ZeroDivisionError:
 					width = 0
 
-				doc += '<div class="entry"><div style="width:{0}%" class="bar" id="cdb_{1}"></div><div class="bar_value"><div class="bar_value_count" id="cdb_{1}_count">{3:6d} : </div><div class="bar_value_profit" id="cdb_{1}_profit">£{4:.2f}</div></div></div>'.format( \
+				doc += '<div class="entry"><div style="width:{0}%" class="bar" id="cdb_{1}"></div><div class="bar_value"><div class="bar_value_count" id="cdb_{1}_count">{3:6d} : </div><div class="bar_value_{5}" id="cdb_{1}_{5}">£{4:.2f}</div></div></div>'.format( \
 					width,
 					hour,
 					hour+1,
 					report_data[hour]["burger"]["count"],
-					report_data[hour]["burger"]["profit"])
+					report_data[hour]["burger"][mode],
+					mode)
 
 			doc += \
 """			</div>
@@ -150,19 +150,20 @@ class nidaba(object):
 
 			for hour in sorted(report_data.keys()):
 				try:
-					if scale == "total_profit":
-						width = int((report_data[hour]["hot_drink"]["profit"]*100)/report_meta_data["total_profit"])
+					if scale == "total":
+						width = int((report_data[hour]["hot_drink"][mode]*100)/report_meta_data["total_"+mode])
 					else:
-						width = int((report_data[hour]["hot_drink"]["profit"]*100)/report_meta_data["total_profit_type"]["hot_drink"])
+						width = int((report_data[hour]["hot_drink"][mode]*100)/report_meta_data["total_"+mode+"_type"]["hot_drink"])
 				except ZeroDivisionError:
 					width = 0
 
-				doc += '<div class="entry"><div style="width:{0}%" class="bar" id="cdhd_{1}"></div><div class="bar_value"><div class="bar_value_count" id="cdhd_{1}_count">{3:6d} : </div><div class="bar_value_profit" id="cdhd_{1}_profit">£{4:.2f}</div></div></div>'.format( \
+				doc += '<div class="entry"><div style="width:{0}%" class="bar" id="cdhd_{1}"></div><div class="bar_value"><div class="bar_value_count" id="cdhd_{1}_count">{3:6d} : </div><div class="bar_value_{5}" id="cdhd_{1}_{5}">£{4:.2f}</div></div></div>'.format( \
 					width,
 					hour,
 					hour+1,
 					report_data[hour]["hot_drink"]["count"],
-					report_data[hour]["hot_drink"]["profit"])
+					report_data[hour]["hot_drink"][mode],
+					mode)
 
 			doc += \
 """			</div>
@@ -179,19 +180,20 @@ class nidaba(object):
 
 			for hour in sorted(report_data.keys()):
 				try:
-					if scale == "total_profit":
-						width = int((report_data[hour]["cold_food"]["profit"]*100)/report_meta_data["total_profit"])
+					if scale == "total":
+						width = int((report_data[hour]["cold_food"][mode]*100)/report_meta_data["total_"+mode])
 					else:
-						width = int((report_data[hour]["cold_food"]["profit"]*100)/report_meta_data["total_profit_type"]["cold_food"])
+						width = int((report_data[hour]["cold_food"][mode]*100)/report_meta_data["total_"+mode+"_type"]["cold_food"])
 				except ZeroDivisionError:
 					width = 0
 
-				doc += '<div class="entry"><div style="width:{0}%" class="bar" id="cdcf_{1}"></div><div class="bar_value"><div class="bar_value_count" id="cdcf_{1}_count">{3:6d} : </div><div class="bar_value_profit" id="cdcf_{1}_profit">£{4:.2f}</div></div></div>'.format( \
+				doc += '<div class="entry"><div style="width:{0}%" class="bar" id="cdcf_{1}"></div><div class="bar_value"><div class="bar_value_count" id="cdcf_{1}_count">{3:6d} : </div><div class="bar_value_{5}" id="cdcf_{1}_{5}">£{4:.2f}</div></div></div>'.format( \
 					width,
 					hour,
 					hour+1,
 					report_data[hour]["cold_food"]["count"],
-					report_data[hour]["cold_food"]["profit"])
+					report_data[hour]["cold_food"][mode],
+					mode)
 
 			doc += \
 """			</div>
@@ -208,19 +210,20 @@ class nidaba(object):
 
 			for hour in sorted(report_data.keys()):
 				try:
-					if scale == "total_profit":
-						width = int((report_data[hour]["cold_drink"]["profit"]*100)/report_meta_data["total_profit"])
+					if scale == "total":
+						width = int((report_data[hour]["cold_drink"][mode]*100)/report_meta_data["total_"+mode])
 					else:
-						width = int((report_data[hour]["cold_drink"]["profit"]*100)/report_meta_data["total_profit_type"]["cold_drink"])
+						width = int((report_data[hour]["cold_drink"][mode]*100)/report_meta_data["total_"+mode+"_type"]["cold_drink"])
 				except ZeroDivisionError:
 					width = 0
 
-				doc += '<div class="entry"><div style="width:{0}%" class="bar" id="cdcd_{1}"></div><div class="bar_value"><div class="bar_value_count" id="cdcd_{1}_count">{3:6d} : </div><div class="bar_value_profit" id="cdcd_{1}_profit">£{4:.2f}</div></div></div>'.format( \
+				doc += '<div class="entry"><div style="width:{0}%" class="bar" id="cdcd_{1}"></div><div class="bar_value"><div class="bar_value_count" id="cdcd_{1}_count">{3:6d} : </div><div class="bar_value_{5}" id="cdcd_{1}_{5}">£{4:.2f}</div></div></div>'.format( \
 					width,
 					hour,
 					hour+1,
 					report_data[hour]["cold_drink"]["count"],
-					report_data[hour]["cold_drink"]["profit"])
+					report_data[hour]["cold_drink"][mode],
+					mode)
 
 			doc += \
 """			</div>
@@ -232,7 +235,7 @@ class nidaba(object):
 
 			doc += \
 """	<div id="header_basic">"""
-			doc += '<div id="event_title"><br><span id="title_1">{0} : {1}</span><span id="title_2"> [{2}]</span><span id="title_3"> : £{3:.2f}</span></div>'.format(config["event_name"], report_meta_data["day"], report_meta_data["date"], report_meta_data["total_profit"])
+			doc += '<div id="event_title"><br><span id="title_1">{0} : {1}</span><span id="title_2"> [{2}]</span><span id="title_3"> : £{3:.2f}</span></div>'.format(config["event_name"], report_meta_data["day"], report_meta_data["date"], report_meta_data["total_"+mode])
 
 
 			doc += \
@@ -240,22 +243,20 @@ class nidaba(object):
 	<div id="charts_basic">"""
 
 
-			doc += \
-"""		<br><br><table class="center">
-		<tr><th>Time</th><th>Total Profit</th><th>Burgers</th><th>Hot Drinks</th><th>Cold Food</th><th>Cold Drinks</th></tr>"""
+			doc += '<br><br><table class="center"><tr><th>Time</th><th>Total {0}</th><th>Burgers</th><th>Hot Drinks</th><th>Cold Food</th><th>Cold Drinks</th></tr>'.format(mode)
 			for hour in sorted(report_data.keys()):
 				doc += '<tr><td>[{0}-{1}]</td><td>£{2:.2f}</td><td>{3:6d} : £{4:.2f}</td><td>{5:6d} : £{6:.2f}</td><td>{7:6d} : £{8:.2f}</td><td>{9:6d} : £{10:.2f}</td></tr>'.format( \
 					hour,
 					hour+1,
-					report_data[hour]["profit"],
+					report_data[hour][mode],
 					report_data[hour]["burger"]["count"],
-					report_data[hour]["burger"]["profit"],
+					report_data[hour]["burger"][mode],
 					report_data[hour]["hot_drink"]["count"],
-					report_data[hour]["hot_drink"]["profit"],
+					report_data[hour]["hot_drink"][mode],
 					report_data[hour]["cold_food"]["count"],
-					report_data[hour]["cold_food"]["profit"],
+					report_data[hour]["cold_food"][mode],
 					report_data[hour]["cold_drink"]["count"],
-					report_data[hour]["cold_drink"]["profit"])
+					report_data[hour]["cold_drink"][mode])
 
 			doc += \
 """		</table>"""
@@ -269,7 +270,7 @@ class nidaba(object):
 			doc += \
 """	<div id="controls">"""
 
-			if scale == "total_profit":
+			if scale == "total":
 				doc += \
 """		<br><div id="radio_scale_total" class="radio_selected">
 		<br>Scale: Total
@@ -286,6 +287,25 @@ class nidaba(object):
 		<br>Scale: By type"""
 
 			doc += \
+"""		</div>"""
+
+			if mode == "profit":
+				doc += \
+"""		<div id="radio_mode_profit" class="radio_selected">
+		<br>Mode: Profit
+		</div>
+		<div id="radio_mode_turnover" class="radio_not_selected">
+		<br>Mode: Turnover"""
+
+			else:
+				doc += \
+"""		<div id="radio_mode_profit" class="radio_not_selected">
+		<br>Mode: Profit
+		</div>
+		<div id="radio_mode_turnover" class="radio_selected">
+		<br>Mode: Turnover"""
+
+			doc += \
 """		</div>
 		<button type="button" id="download_button" onclick="reports.download()">Download</button>
 	</div>"""
@@ -298,16 +318,20 @@ class nidaba(object):
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
 	@cherrypy.expose
-	def reports_pdf(self, date=""):
+	def reports_pdf(self, date="", mode="turnover"):
 		date = str(self.m_archive.get_sanitized_date([ date ]))
+
+		if not mode in ["profit", "turnover"]:
+			mode = "profit"
+
 		doc = ""
-		subprocess.call(["xvfb-run", "--", "wkhtmltopdf", "127.0.0.1:8080/reports?date={0}&print_view=basic".format(date), "public/reports/profit_{0}.pdf".format(date)])
+		subprocess.call(["xvfb-run", "--", "wkhtmltopdf", "127.0.0.1:8080/reports?date={0}&print_view=basic&mode={1}".format(date, mode), "public/reports/{1}_{0}.pdf".format(date, mode)])
 
 		doc += \
 """<!doctype html>
 <html>
 <head>"""
-		doc += '<meta http-equiv="refresh" content="0; url=static/reports/profit_{0}.pdf" />'.format(date)
+		doc += '<meta http-equiv="refresh" content="0; url=static/reports/{1}_{0}.pdf" />'.format(date, mode)
 		
 		doc += \
 """</head>
@@ -322,7 +346,7 @@ class nidaba(object):
 				return f(class_instance, client_obj)
 		return wrapped_f
 
-	def io_error(client_obj):
+	def io_error(self, client_obj):
 		cherrypy.log("unrecognized client request")
 
 	@one_at_a_time
@@ -344,6 +368,7 @@ class nidaba(object):
 			"get_report": self.m_archive.get_report,
 
 			"set_time": self.m_archive.set_time,
+			"get_time": self.m_archive.get_time,
 
 		}.get(client_obj[0], self.io_error)(client_obj[1:])
 
