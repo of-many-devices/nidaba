@@ -1,0 +1,27 @@
+body
+{
+	background-color:		#0f8415;
+	position:				absolute;
+	width:					100%;
+	height:					100%;	
+	margin:					0px;
+}
+
+h1
+{
+	font-family:			Sans-Serif;
+	font-size:				300%;
+	color:					#e0ffe0;
+}
+
+h2
+{
+	font-family:			Sans-Serif;
+	color:					#204020;
+}
+
+button
+{
+	height:					50px;	
+	width:					150px;	
+}

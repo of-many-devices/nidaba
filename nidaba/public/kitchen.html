@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+	<title>Veggies Nidaba</title>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/io.js"></script>
+	<script type="text/javascript" src="js/kitchen.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/kitchen.css">
+</head>
+
+<body>
+	<div id="burgers_served">
+	</div>
+
+	<div id="cobs_served">
+	</div>
+
+	<div id="controls_burgers">
+		<br><button type="button" id="burgers_delivered_button" onclick="kitchen.burgers_delivered()">Burger Delivery</button><br>
+	</div>
+
+	<div id="controls_cobs">
+		<br><button type="button" id="cobs_delivered_button" onclick="kitchen.cobs_delivered()">Cob Delivery</button><br>
+	</div>
+
+	<script type="text/javascript">kitchen.update();</script>
+</body>
+</html>

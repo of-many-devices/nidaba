@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+	<title>Veggies Nidaba</title>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/io.js"></script>
+	<script type="text/javascript" src="js/money.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/money.css">
+</head>
+
+<body>
+	<div id="menu">
+		<div id="classic_single_burger" class="menu_item"></div>
+		<div id="classic_double_burger" class="menu_item"></div>
+		<div id="classic_cheezly_burger" class="menu_item"></div>
+		<div id="classic_double_cheezly_burger" class="menu_item"></div>
+
+		<div id="vlt_single_burger" class="menu_item"></div>
+		<div id="vlt_cheezly_burger" class="menu_item"></div>
+
+		<div id="hemp_single_burger" class="menu_item"></div>
+		<div id="hemp_double_burger" class="menu_item"></div>
+		<div id="hemp_cheezly_burger" class="menu_item"></div>
+		<div id="hemp_double_cheezly_burger" class="menu_item"></div>
+
+		<div id="gluten_free_meal" class="menu_item"></div>
+
+		<div id="cake" class="menu_item"></div>
+
+		<div id="no_onions" class="menu_option"><br>No onions</div>
+		<div id="no_salad" class="menu_option"><br>No salad</div>
+		<div id="no_lettuce" class="menu_option"><br>No lettuce</div>
+		<div id="no_cucumber" class="menu_option"><br>No cucum.</div>
+		<div id="no_tomato" class="menu_option"><br>No tomato</div>
+		<div id="ask_me_0" class="menu_option"><br>Ask Me</div>
+		
+		<div id="tea" class="menu_item"></div>
+		<div id="earl_grey" class="menu_item"></div>
+		<div id="green_tea" class="menu_item"></div>
+		<div id="chai" class="menu_item"></div>
+		
+		<div id="mushrooms" class="menu_option"><br>Shrooms</div>
+		<div id="rasher" class="menu_option"><br>Rasher</div>
+
+		<div id="rooibos" class="menu_item"></div>
+		<div id="chamomile_tea" class="menu_item"></div>
+		<div id="peppermint_tea" class="menu_item"></div>
+		<div id="berry_tea" class="menu_item"></div>
+		<div id="nettle_tea" class="menu_item"></div>
+		<div id="decaf_tea" class="menu_item"></div>
+		<div id="coffee" class="menu_item"></div>
+		<div id="decaf_coffee" class="menu_item"></div>
+		<div id="hot_chocolate" class="menu_item"></div>
+
+		<div id="can" class="menu_item"></div>
+		<div id="carton" class="menu_item"></div>
+		<div id="bottle" class="menu_item"></div>
+
+		<div id="soya" class="menu_option"><br>Soya</div>
+		<div id="oat" class="menu_option"><br>Oat</div>
+		<div id="rice" class="menu_option"><br>Rice</div>
+		<div id="coconut" class="menu_option"><br>Coconut</div>
+		<div id="almond" class="menu_option"><br>Almond</div>
+		<div id="hemp" class="menu_option"><br>Hemp</div>
+		<div id="sugar" class="menu_option"><br>Sugar</div>
+		<div id="double_sugar" class="menu_option"><br>Sugar x2</div>
+		<div id="triple_sugar" class="menu_option"><br>Sugar x3</div>
+		<div id="ask_me_1" class="menu_option"><br>Ask Me</div>
+
+		<div id="pasty" class="menu_item"></div>
+		<div id="indian" class="menu_item"></div>
+	</div>
+
+	<div id="price">
+	<h1>£0.00</h1>
+	</div>
+	
+	<div id="order">
+	</div>
+
+	<div id="controls">
+		<div id="next_customer_button_div">
+			<br><br><button type="button" id="next_customer_button" onclick="money.next_customer()">Next Customer</button><br>
+		</div>
+		<div id="delete_button_div">
+			<br><br><button type="button" id="delete_button" onclick="money.del()">Delete</button><br>
+		</div>
+	</div>
+
+	<script type="text/javascript">money.init();</script>
+</body>
+</html>

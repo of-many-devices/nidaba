@@ -1,0 +1,41 @@
+#burgers_served
+{
+	position:			absolute;
+	top:				10%;
+	left:				55%;
+	width:				40%;
+	height:				70%;
+	text-align:			center;
+}
+
+#cobs_served
+{
+	position:			absolute;
+	top:				10%;
+	left:				5%;
+	width:				40%;
+	height:				70%;
+	text-align:			center;
+}
+
+#controls_burgers
+{
+	position:			absolute;
+	top:				80%;
+	left:				50%;
+	width:				50%;
+	height:				20%;
+	text-align:			center;
+	background-color:	#204020;
+}
+
+#controls_cobs
+{
+	position:			absolute;
+	top:				80%;
+	left:				0%;
+	width:				50%;
+	height:				20%;
+	text-align:			center;
+	background-color:	#204020;
+}

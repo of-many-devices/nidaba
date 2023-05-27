@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+	<title>Veggies Nidaba</title>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+
+	<script type="text/javascript" src="js/io.js"></script>
+	<script type="text/javascript" src="js/config.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/config.css">
+</head>
+
+<body>
+	<div id="config_form">
+		<div id="title">
+			<h2>
+				Configuration:<br>
+			</h2>
+		</div>
+
+		<div id="event_data">
+			Name of event<br>
+			<input type="text" id="event_name"><br><br>
+		</div>
+
+		<div id="price_data">
+			<table>
+				<tr>
+					<td>Burger base price (£)<br>
+					Sale:<input type="text" id="price_burger_base"><br>
+					Cost:<input type="text" id="cost_burger_base"><br></td>
+					<td>Burger extra price (£)<br>
+					Sale:<input type="text" id="price_burger_extra"><br>
+					Cost:<input type="text" id="cost_burger_extra"><br></td>
+					<td>Hot drink price (£)<br>
+					Sale:<input type="text" id="price_hot_drink"><br>
+					Cost:<input type="text" id="cost_hot_drink"><br></td>
+				</tr>
+				<tr>
+					<td>Fizzy can price (£)<br>
+					Sale:<input type="text" id="price_cold_drink_can"><br>
+					Cost:<input type="text" id="cost_cold_drink_can"><br></td>
+					<td>Juice / soya price (£)<br>
+					Sale:<input type="text" id="price_cold_drink_carton"><br>
+					Cost:<input type="text" id="cost_cold_drink_carton"><br></td>
+					<td>Water price (£)<br>
+					Sale:<input type="text" id="price_cold_drink_bottle"><br>
+					Cost:<input type="text" id="cost_cold_drink_bottle"><br></td>
+				</tr>
+				<tr>
+					<td>Pasty price (£)<br>
+					Sale:<input type="text" id="price_cold_food_pasty"><br>
+					Cost:<input type="text" id="cost_cold_food_pasty"><br></td>
+					<td>Samosa/bhaji price (£)<br>
+					Sale:<input type="text" id="price_cold_food_indian"><br>
+					Cost:<input type="text" id="cost_cold_food_indian"><br></td>
+					<td>Cake price (£)<br>
+					Sale:<input type="text" id="price_cold_food_cake"><br>
+					Cost:<input type="text" id="cost_cold_food_cake"><br></td>
+			</table>
+		</div>
+		<div id="controls">
+			<br><button type="button" id="save_button" onclick="config.save()">Save</button><br><br>
+			<div id="toast"></div>
+		</div>
+	</div>
+
+	<script type="text/javascript">config.load();</script>
+
+</body>
+</html>
+

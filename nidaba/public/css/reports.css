@@ -1,0 +1,156 @@
+#header
+{
+	position:				absolute;
+	top:					0%;
+	height:					10%;
+	width:					100%;	
+	text-align:				center;
+}
+
+#charts
+{
+	position:				absolute;
+	top:					10%;
+	height:					75%;
+	width:					100%;	
+	overflow:				auto;	
+}
+
+#controls
+{
+	position:				absolute;
+	top:					85%;
+	height:					15%;
+	width:					100%;	
+	background-color:		#204020;
+	text-align:				center;
+}
+
+#title_1
+{
+	font-family:			Sans-Serif;
+	font-size:				150%;
+	color:					#e0ffe0;
+}
+#title_2
+{
+	font-family:			Sans-Serif;
+	color:					#204020;
+}
+#title_3
+{
+	font-family:			Sans-Serif;
+	font-size:				150%;
+	color:					#e0ffe0;
+}
+
+.chart
+{
+	position:				absolute;
+	width:					18%;
+}
+
+#chart_time
+{
+	position:				absolute;
+	left:					0%;
+	width:					10%;
+	text-align:				center;
+}
+
+#chart_profit
+{
+	left:					10%;
+}
+#chart_burgers
+{
+	left:					28%;
+}
+#chart_hot_drinks
+{
+	left:					46%;
+}
+#chart_cold_food
+{
+	left:					64%;
+}
+#chart_cold_drinks
+{
+	left:					82%;
+}
+
+.entry
+{
+	position:				relative;
+	left:					2%;
+	width:					96%;
+	height:					20px;
+}
+
+.bar
+{
+	position:				absolute;
+	left:					0%;
+	top:					5%;
+	height:					90%;
+	background-color:		#e0ffe0;
+	z-index:				0;	
+}
+
+.bar_value
+{
+	position:				absolute;
+	left:					0%;
+	top:					0%;
+	height:					100%;
+	z-index:				1;
+}
+
+.bar_value_time
+{
+	display:				inline;	
+	color:					#e0ffe0;
+}
+.bar_value_count
+{
+	display:				inline;	
+}
+.bar_value_profit
+{
+	display:				inline;	
+}
+
+#download_button
+{
+	float:					left;
+}
+
+.radio_selected
+{
+	background-image: 		url("../img/green_tick.png");
+	background-size:		auto 100%;
+	background-repeat:		no-repeat;
+	background-position:	center;
+	display:				inline;	
+	height:					50px;	
+	width:					150px;	
+	font-family:			Sans-Serif;
+	color:					#000000;
+	float:					left;	
+}
+.radio_not_selected
+{
+	display:				inline;
+	height:					50px;	
+	width:					150px;	
+	font-family:			Sans-Serif;
+	color:					#e0ffe0;
+	float:					left;	
+}
+
+#radio_scale_profit
+{
+}
+#radio_scale_count
+{
+}

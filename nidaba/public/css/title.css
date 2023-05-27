@@ -1,0 +1,55 @@
+.title_option
+{
+	position:			absolute;
+	width:				30%;
+	height:				12%;	
+	left:				35%;
+	right:				35%;
+	text-align:			center;
+}
+
+#title
+{
+	top:				2%;
+	background-image: 	url("../img/nidaba.png");
+	background-size:	auto 100%;
+	background-repeat:	no-repeat;
+	background-position:center;
+}	
+
+#money
+{
+	top:				15%;
+	background-color:	#0f7415;
+}
+
+#griddle
+{
+	top:				28%;
+	background-color:	#0f7415;
+}
+
+#hot_drinks
+{
+	top:				41%;
+	background-color:	#0f7415;
+}
+
+#kitchen
+{
+	top:				54%;
+	background-color:	#0f7415;
+}
+
+#reports
+{
+	top:				67%;
+	background-color:	#0f7415;
+}
+
+#config
+{
+	top:				80%;
+	background-color:	#0f7415;
+}
+

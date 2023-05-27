@@ -1,0 +1,40 @@
+#config_form
+{
+	position:				absolute;
+	width:					90%;
+	height:					60%;
+	top:					5%;
+	left:					5%;
+	right:					5%;
+	
+	font-family:			Sans-Serif;
+	font-weight:			bolder;
+	color:					#90e090;
+}
+
+#controls
+{
+	text-align:				left;	
+}
+
+#event_name
+{
+	width:					200px;	
+}
+
+input
+{
+	width:					30px;
+}
+
+table
+{
+	width:					100%;	
+}
+
+td
+{
+	width:					30%;
+	text-align:				right;
+	border:					1px solid #e0ffe0;
+}

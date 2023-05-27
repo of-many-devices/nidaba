@@ -1,0 +1,257 @@
+#menu
+{
+	position:			absolute;
+	top:				0%;
+	left:				0%;
+	height:				100%;
+	width:				60%;
+}
+
+#order
+{
+	position:			absolute;
+	top:				10%;
+	left:				60%;
+	height:				55%;
+	width:				40%;
+	font-family:		Sans-Serif;
+	font-weight:		bolder;
+	color:				#90e090;
+	word-wrap:			break-word;
+	overflow-y:			auto;	
+}
+
+#price
+{
+	position:			absolute;
+	top:				65%;
+	left:				60%;
+	height:				15%;
+	width:				40%;
+	text-align:			center;
+}
+
+#controls
+{
+}
+
+#delete_button_div
+{
+	position:			absolute;
+	top:				80%;
+	left:				60%;
+	height:				20%;
+	width:				20%;
+	text-align:			center;
+}
+
+#next_customer_button_div
+{
+	position:			absolute;
+	top:				80%;
+	left:				80%;
+	height:				20%;
+	width:				20%;
+	text-align:			center;
+}
+
+.menu_item
+{
+	background-size:	100% 100%;
+	background-repeat:	no-repeat;
+	background-position:center;
+	width:				15%;
+	height:				12%;
+	float:				left;
+	margin:				1px;
+}
+
+.menu_option
+{
+	width:				15%;
+	height:				12%;
+	float:				left;
+	font-family:		Sans-Serif;
+	font-weight:		bolder;
+	color:				#90e090;
+	text-align:			center;
+	background-color:	#0f7415;
+	margin:				1px;
+}
+
+#classic_single_burger
+{
+	background-image: 	url("../img/single.png");
+	background-color:	#e09040;
+	clear:				both;
+}
+
+#classic_double_burger
+{
+	background-image: 	url("../img/double.png");
+	background-color:	#e09040;
+}
+
+#classic_cheezly_burger
+{
+	background-image: 	url("../img/cheezly.png");
+	background-color:	#e09040;
+}
+
+#classic_double_cheezly_burger
+{
+	background-image: 	url("../img/double_cheezly.png");
+	background-color:	#e09040;
+}
+
+#vlt_single_burger
+{
+	background-image: 	url("../img/single.png");
+	background-color:	#a80830;
+}
+
+#vlt_cheezly_burger
+{
+	background-image: 	url("../img/cheezly.png");
+	background-color:	#a80830;
+}
+
+#hemp_single_burger
+{
+	background-image: 	url("../img/single.png");
+	background-color:	#a0c090;
+	clear:				both;
+}
+
+#hemp_double_burger
+{
+	background-image: 	url("../img/double.png");
+	background-color:	#a0c090;
+}
+
+#hemp_cheezly_burger
+{
+	background-image: 	url("../img/cheezly.png");
+	background-color:	#a0c090;
+}
+
+#hemp_double_cheezly_burger
+{
+	background-image: 	url("../img/double_cheezly.png");
+	background-color:	#a0c090;
+}
+
+#gluten_free_meal
+{
+	background-image: 	url("../img/single.png");
+	background-color:	#d2bd85;
+}
+
+#cake
+{
+	background-image: 	url("../img/cake.png");
+}
+
+#tea
+{
+	background-image: 	url("../img/tea.png");
+	clear:				both;
+}
+
+#earl_grey
+{
+	background-image: 	url("../img/earl_grey.png");
+}
+
+#green_tea
+{
+	background-image: 	url("../img/green_tea.png");
+}
+
+#chai
+{
+	background-image: 	url("../img/chai.png");
+}
+
+#rooibos
+{
+	background-image: 	url("../img/rooibos.png");
+	clear:				both;
+}
+
+#chamomile_tea
+{
+	background-image: 	url("../img/chamomile_tea.png");
+}
+
+#peppermint_tea
+{
+	background-image: 	url("../img/peppermint_tea.png");
+}
+
+#berry_tea
+{
+	background-image: 	url("../img/berry_tea.png");
+}
+
+#nettle_tea
+{
+	background-image: 	url("../img/nettle_tea.png");
+}
+
+#decaf_tea
+{
+	background-image: 	url("../img/decaf_tea.png");
+}
+
+#coffee
+{
+	background-image: 	url("../img/coffee.png");
+	clear:				both;
+}
+
+#decaf_coffee
+{
+	background-image: 	url("../img/decaf_coffee.png");
+}
+
+#hot_chocolate
+{
+	background-image: 	url("../img/hot_chocolate.png");
+}
+
+#can
+{
+	background-image: 	url("../img/can.png");
+}
+
+#carton
+{
+	background-image: 	url("../img/carton.png");
+}
+
+#bottle
+{
+	background-image: 	url("../img/bottle.png");
+}
+
+#no_onions
+{
+	clear:				both;
+}
+
+#soya
+{
+	clear:				both;
+}
+
+#pasty
+{
+	background-image: 	url("../img/pasty.png");
+}
+
+#indian
+{
+	background-image: 	url("../img/indian.png");
+}
+
