@@ -100,7 +100,7 @@ class nidaba_archive(object):
 			extra_count = { 	"single" : 0, \
 								"double" : 2, 
 								"cheezly": 1,
-								"double_cheezly" : 2 }.get(item["burger_type"], None)
+								"double_cheezly" : 3 }.get(item["burger_type"], None)
 
 			if "Shrooms" in item["extras"]:
 				extra_count += 1

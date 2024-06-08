@@ -23,10 +23,12 @@ var hot_drinks =
 			{
 				if(server_obj[i].length == 0)
 				{
+					document.getElementById("on_"+i).innerHTML = "";
 					queue_full = false;
 				}
 				else
 				{
+					document.getElementById("on_"+i).innerHTML = server_obj[i][0]["order_number"];
 					document.getElementById("next_order_button").disabled = false;
 				}
 
@@ -55,7 +57,7 @@ var hot_drinks =
 		if(queue_full == false)
 		{
 			clearTimeout(hot_drinks.timer);
-			hot_drinks.timer = setTimeout(function(){hot_drinks.get_hot_drinks(true)}, 9000);
+			hot_drinks.timer = setTimeout(function(){hot_drinks.get_hot_drinks(true);}, 9000);
 		}
 	},
 };

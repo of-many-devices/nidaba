@@ -330,7 +330,7 @@ class nidaba(object):
 		date = str(self.m_archive.get_sanitized_date([ date ]))
 
 		if not mode in ["profit", "turnover"]:
-			mode = "profit"
+			mode = "turnover"
 
 		doc = ""
 		subprocess.call(["xvfb-run", "--", "wkhtmltopdf", "127.0.0.1:8080/reports?date={0}&print_view=basic&mode={1}".format(date, mode), "public/reports/{1}_{0}.pdf".format(date, mode)])

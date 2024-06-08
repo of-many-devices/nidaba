@@ -10,7 +10,7 @@
 #order
 {
 	position:			absolute;
-	top:				10%;
+	top:				15%;
 	left:				60%;
 	height:				55%;
 	width:				40%;
@@ -19,6 +19,25 @@
 	color:				#90e090;
 	word-wrap:			break-word;
 	overflow-y:			auto;	
+}
+
+#order_number
+{
+	position:			absolute;
+	top:				2%;
+	left:				60%;
+	height:				15%;
+	width:				40%;
+	text-align:			center;
+
+	font-family:		Sans-Serif;
+	font-weight:		bolder;
+	font-size:			300%;
+	color:				#e0ffe0;
+	background-color:	#0f8415;
+
+	border:				none;
+	outline:			none;	
 }
 
 #price

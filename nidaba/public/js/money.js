@@ -3,292 +3,299 @@ var money =
 {
 	init: function()
 	{
-		document.getElementById("classic_single_burger").addEventListener('touchstart',
+		var order_number_str = window.localStorage.getItem("order_number");
+		if (order_number_str == null)
+		{
+			order_number_str = "0";
+		}
+		document.getElementById("order_number").value = order_number_str;
+
+		document.getElementById("classic_single_burger").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "burger", "burger_mix_type" : "classic", "burger_type" : "single", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("classic_double_burger").addEventListener('touchstart',
+		document.getElementById("classic_double_burger").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "burger", "burger_mix_type" : "classic", "burger_type" : "double", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("classic_cheezly_burger").addEventListener('touchstart',
+		document.getElementById("classic_cheezly_burger").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "burger", "burger_mix_type" : "classic", "burger_type" : "cheezly", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("classic_double_cheezly_burger").addEventListener('touchstart',
+		document.getElementById("classic_double_cheezly_burger").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "burger", "burger_mix_type" : "classic", "burger_type" : "double_cheezly", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("vlt_single_burger").addEventListener('touchstart',
+		document.getElementById("vlt_single_burger").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "burger", "burger_mix_type" : "vlt", "burger_type" : "single", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("vlt_cheezly_burger").addEventListener('touchstart',
+		document.getElementById("vlt_cheezly_burger").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "burger", "burger_mix_type" : "vlt", "burger_type" : "cheezly", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("hemp_single_burger").addEventListener('touchstart',
+		document.getElementById("hemp_single_burger").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "burger", "burger_mix_type" : "hemp", "burger_type" : "single", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("hemp_double_burger").addEventListener('touchstart',
+		document.getElementById("hemp_double_burger").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "burger", "burger_mix_type" : "hemp", "burger_type" : "double", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("hemp_cheezly_burger").addEventListener('touchstart',
+		document.getElementById("hemp_cheezly_burger").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "burger", "burger_mix_type" : "hemp", "burger_type" : "cheezly", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("hemp_double_cheezly_burger").addEventListener('touchstart',
+		document.getElementById("hemp_double_cheezly_burger").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "burger", "burger_mix_type" : "hemp", "burger_type" : "double_cheezly", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("gluten_free_meal").addEventListener('touchstart',
+		document.getElementById("gluten_free_meal").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "burger", "burger_mix_type" : "gluten_free", "burger_type" : "single", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("wedges").addEventListener('touchstart',
+		document.getElementById("wedges").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "cold_food", "cold_food_type" : "wedges", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("cake").addEventListener('touchstart',
+		document.getElementById("cake").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "cold_food", "cold_food_type" : "cake", "extras" : [] });
 			}.bind(this)
 		);
 
-		document.getElementById("no_onions").addEventListener('touchstart',
+		document.getElementById("no_onions").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("No onions");
 			}.bind(this)
 		);
-		document.getElementById("no_salad").addEventListener('touchstart',
+		document.getElementById("no_salad").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("No salad");
 			}.bind(this)
 		);
-		document.getElementById("no_lettuce").addEventListener('touchstart',
+		document.getElementById("no_lettuce").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("No lettuce");
 			}.bind(this)
 		);
-		document.getElementById("no_cucumber").addEventListener('touchstart',
+		document.getElementById("no_cucumber").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("No cucum.");
 			}.bind(this)
 		);
-		document.getElementById("no_tomato").addEventListener('touchstart',
+		document.getElementById("no_tomato").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("No tomato");
 			}.bind(this)
 		);
-		document.getElementById("ask_me_0").addEventListener('touchstart',
+		document.getElementById("ask_me_0").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("Ask me");
 			}.bind(this)
 		);
 
-		document.getElementById("tea").addEventListener('touchstart',
+		document.getElementById("tea").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "hot_drink", "hot_drink_type" : "tea", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("coffee").addEventListener('touchstart',
+		document.getElementById("coffee").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "hot_drink", "hot_drink_type" : "coffee", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("hot_chocolate").addEventListener('touchstart',
+		document.getElementById("hot_chocolate").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "hot_drink", "hot_drink_type" : "hot_chocolate", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("chamomile_tea").addEventListener('touchstart',
+		document.getElementById("chamomile_tea").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "hot_drink", "hot_drink_type" : "chamomile_tea", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("peppermint_tea").addEventListener('touchstart',
+		document.getElementById("peppermint_tea").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "hot_drink", "hot_drink_type" : "peppermint_tea", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("berry_tea").addEventListener('touchstart',
+		document.getElementById("berry_tea").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "hot_drink", "hot_drink_type" : "berry_tea", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("chai").addEventListener('touchstart',
+		document.getElementById("chai").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "hot_drink", "hot_drink_type" : "chai", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("no_onions").addEventListener('touchstart',
+		document.getElementById("no_onions").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("No onions");
 			}.bind(this)
 		);
-		document.getElementById("mushrooms").addEventListener('touchstart',
+		document.getElementById("mushrooms").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("Shrooms");
 			}.bind(this)
 		);
-		document.getElementById("rasher").addEventListener('touchstart',
+		document.getElementById("rasher").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("Rasher");
 			}.bind(this)
 		);
-		document.getElementById("earl_grey").addEventListener('touchstart',
+		document.getElementById("earl_grey").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "hot_drink", "hot_drink_type" : "earl_grey", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("green_tea").addEventListener('touchstart',
+		document.getElementById("green_tea").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "hot_drink", "hot_drink_type" : "green_tea", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("rooibos").addEventListener('touchstart',
+		document.getElementById("rooibos").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "hot_drink", "hot_drink_type" : "rooibos", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("decaf_coffee").addEventListener('touchstart',
+		document.getElementById("decaf_coffee").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "hot_drink", "hot_drink_type" : "decaf_coffee", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("nettle_tea").addEventListener('touchstart',
+		document.getElementById("nettle_tea").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "hot_drink", "hot_drink_type" : "nettle_tea", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("decaf_tea").addEventListener('touchstart',
+		document.getElementById("decaf_tea").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "hot_drink", "hot_drink_type" : "decaf_tea", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("can").addEventListener('touchstart',
+		document.getElementById("can").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "cold_drink", "cold_drink_type" : "can", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("carton").addEventListener('touchstart',
+		document.getElementById("carton").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "cold_drink", "cold_drink_type" : "carton", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("bottle").addEventListener('touchstart',
+		document.getElementById("bottle").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "cold_drink", "cold_drink_type" : "bottle", "extras" : [] });
 			}.bind(this)
 		);
 
-		document.getElementById("soya").addEventListener('touchstart',
+		document.getElementById("soya").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("Soya");
 			}.bind(this)
 		);
-		document.getElementById("oat").addEventListener('touchstart',
+		document.getElementById("oat").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("Oat");
 			}.bind(this)
 		);
-		document.getElementById("rice").addEventListener('touchstart',
+		document.getElementById("rice").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("Rice");
 			}.bind(this)
 		);
-		document.getElementById("coconut").addEventListener('touchstart',
+		document.getElementById("coconut").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("Coconut");
 			}.bind(this)
 		);
-		document.getElementById("almond").addEventListener('touchstart',
+		document.getElementById("almond").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("Almond");
 			}.bind(this)
 		);
-		document.getElementById("hemp").addEventListener('touchstart',
+		document.getElementById("hemp").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("Hemp");
 			}.bind(this)
 		);
-		document.getElementById("sugar").addEventListener('touchstart',
+		document.getElementById("sugar").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("Sugar");
 			}.bind(this)
 		);
-		document.getElementById("ask_me_1").addEventListener('touchstart',
+		document.getElementById("ask_me_1").addEventListener('click',
 			function(event)
 			{
 				this.add_extra("Ask me");
 			}.bind(this)
 		);
-		document.getElementById("pasty").addEventListener('touchstart',
+		document.getElementById("pasty").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "cold_food", "cold_food_type" : "pasty", "extras" : [] });
 			}.bind(this)
 		);
-		document.getElementById("indian").addEventListener('touchstart',
+		document.getElementById("indian").addEventListener('click',
 			function(event)
 			{
 				this.add({ 	"type" : "cold_food", "cold_food_type" : "indian", "extras" : [] });
@@ -311,7 +318,7 @@ var money =
 	current_item: {},
 	order: [],
 	order_str: "",
-	
+
 	add: function(item)
 	{
 		if(this.order.length == 0)
@@ -369,7 +376,13 @@ var money =
 			this.order.push(this.current_item);
 			this.current_item = {};
 		}
-		
+
+		var order_number = parseInt(document.getElementById("order_number").value);
+		for (var i = 0; i < this.order.length; i++)
+		{
+			this.order[i]["order_number"] = order_number;
+		}
+
 		this.order.splice(0, 0, "put_order");
 		io.exec(this.order, money.next_customer_cb.bind(this));
 	
@@ -382,6 +395,11 @@ var money =
 	},
 	next_customer_cb: function()
 	{
+		var order_number = parseInt(document.getElementById("order_number").value) + 1;
+		var order_number_str = order_number.toString();
+		document.getElementById("order_number").value = order_number_str;
+		window.localStorage.setItem("order_number", order_number_str);
+
 		document.getElementById("next_customer_button").disabled = document.getElementById("delete_button").disabled;
 		this.next_customering = false;
 	},
