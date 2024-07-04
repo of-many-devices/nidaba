@@ -2,6 +2,16 @@ var griddle =
 {
 	timer: null,
 
+	init: function()
+	{
+		document.addEventListener("keydown", function(event)
+		{
+			griddle.get_griddle(false);
+		});
+
+		griddle.get_griddle(true);
+	},
+	
 	get_griddle: function(peek)
 	{
 		document.getElementById("next_order_button").disabled = true;
@@ -34,8 +44,16 @@ var griddle =
 
 				for (var j = 0; (j < server_obj[i].length) && (j < 10); j++)
 				{
-					document.getElementById("o_"+j+"_"+i).className = server_obj[i][j]["burger_mix_type"]+" order_item";
-					document.getElementById("o_"+j+"_"+i).style.backgroundImage = "url('img/"+server_obj[i][j]["burger_type"]+".png')";
+					if(server_obj[i][j]["type"] == "burger")
+					{
+						document.getElementById("o_"+j+"_"+i).className = server_obj[i][j]["burger_mix_type"]+" order_item";
+						document.getElementById("o_"+j+"_"+i).style.backgroundImage = "url('img/"+server_obj[i][j]["burger_type"]+".png')";
+					}
+					else if(server_obj[i][j]["type"] == "cold_food")
+					{
+						document.getElementById("o_"+j+"_"+i).className = "zero_mix order_item";
+						document.getElementById("o_"+j+"_"+i).style.backgroundImage = "url('img/"+server_obj[i][j]["cold_food_type"]+".png')";
+					}
 				
 					var extra_str = "<div class='blinking_extras'>";
 					for (var k = 0; k < server_obj[i][j]["extras"].length; k++)

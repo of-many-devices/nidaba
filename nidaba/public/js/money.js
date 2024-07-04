@@ -366,9 +366,9 @@ var money =
 
 		this.update();
 	},
-	
+
 	next_customering: false,
-	
+
 	next_customer: function()
 	{
 		if(Object.keys(this.current_item).length != 0)
@@ -386,21 +386,35 @@ var money =
 		this.order.splice(0, 0, "put_order");
 		io.exec(this.order, money.next_customer_cb.bind(this));
 	
-		this.order = [];
 		document.getElementById("next_customer_button").disabled = true;
 		document.getElementById("delete_button").disabled = true;
-		this.update();
 
 		this.next_customering = true;
 	},
 	next_customer_cb: function()
 	{
-		var order_number = parseInt(document.getElementById("order_number").value) + 1;
+		var order_number = parseInt(document.getElementById("order_number").value);
+
+		var order_requires_ticket = false;
+		for (var i = 1; i < this.order.length; i++)
+		{
+			if ((this.order[i]["type"] == "burger") || ((this.order[i]["type"] == "cold_food") && (this.order[i]["cold_food_type"] == "wedges")))
+			{
+				order_requires_ticket = true;
+			}
+		}
+		if(order_requires_ticket)
+		{
+			order_number = order_number + 1;
+		}
+
 		var order_number_str = order_number.toString();
 		document.getElementById("order_number").value = order_number_str;
 		window.localStorage.setItem("order_number", order_number_str);
 
+		this.order = [];
 		document.getElementById("next_customer_button").disabled = document.getElementById("delete_button").disabled;
+		this.update();
 		this.next_customering = false;
 	},
 

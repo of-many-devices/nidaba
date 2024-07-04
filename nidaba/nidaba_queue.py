@@ -30,7 +30,7 @@ class nidaba_queue(object):
 	
 		self.m_archive.archive_order(order)
 
-		griddle_order = [ item for item in order if item["type"] == "burger"]
+		griddle_order = [ item for item in order if item["type"] == "burger" or (item["type"] == "cold_food" and item["cold_food_type"] == "wedges")]
 		hot_drinks_order = [ item for item in order if item["type"] == "hot_drink"]
 
 		if len(griddle_order) > 0:
